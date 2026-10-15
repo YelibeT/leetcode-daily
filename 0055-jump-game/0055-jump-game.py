@@ -9,9 +9,10 @@ class Solution(object):
         issues: trying every possible jump
         reaching False after doing almost n steps
         repeated work
+
         fixes: check if one position can reach the next or pass it
         catch Falses early
-        no need to check every possible jump just check if the least can make it 
+        no need to check every possible jump just check if the most jump can make it or pass it
 
         """
         goalPost = len(nums) - 1

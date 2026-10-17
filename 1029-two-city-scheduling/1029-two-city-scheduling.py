@@ -1,7 +1,8 @@
 class Solution(object):
     def twoCitySchedCost(self, costs):
         """
-        
+        :type costs: List[List[int]]
+        :rtype: int
         """
         costs.sort(key=lambda cost: cost[0] - cost[1])
         minCost = 0

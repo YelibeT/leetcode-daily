@@ -13,7 +13,7 @@ class Solution(object):
         :rtype: Node
         """
         if not node:
-            return 
+            return None
         oldToNew = {}
         def dfs(node):
             if node in oldToNew:

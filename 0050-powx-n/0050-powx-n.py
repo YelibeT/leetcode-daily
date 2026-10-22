@@ -14,6 +14,7 @@ class Solution(object):
                 return 1
             res = recurse(x, n // 2)
             res *= res #the other half
+            
             return x*res if n%2 else res #even and odd
         res = recurse(x, abs(n))
         if n<0: return 1/res

@@ -5,15 +5,9 @@ class Solution:
         """
         if len(s) > len(t):
             return False
-        scount = Counter(s)
-        print(scount)
+        sset = set(s)
         for char in t:
-            if char not in s:
-                return False
-            else:
-                scount[char] -= 1
-        print(scount)
-        for freq in scount.values():
-            if freq != 0:
+            if char not in sset or s.count(char) != t.count(char):
                 return False
         return True
+        

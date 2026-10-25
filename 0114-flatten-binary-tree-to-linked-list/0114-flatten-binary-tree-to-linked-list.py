@@ -6,27 +6,20 @@
 #         self.right = right
 class Solution(object):
     def flatten(self, root):
-        """
+        if not root:
+            return None
 
-        left child pointer is null
-        order -> as the pre-order traversal of the binary tree
+        left = self.flatten(root.left)
+        right = self.flatten(root.right)
 
-        """
-        def recurse(root):
-            if not root:
-                return None
-            left = recurse(root.left) 
-            right = recurse(root.right)
-            #edge case: if one of em is empty
-            if left:#it should have no left child
-                left.right = root.right
-                root.right = root.left
-                root.left = None
-            res = right or left or root #the order matters
-            return res
-        return recurse(root)
-
-
+        if left:
+            left.right = root.right
+            root.right = root.left
+            root.left = None
+            
+        res = right or left or root
+        return res
+        
 
 
         

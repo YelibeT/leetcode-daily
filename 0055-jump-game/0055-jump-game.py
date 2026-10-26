@@ -1,35 +1,16 @@
 class Solution(object):
     def canJump(self, nums):
         """
-
-        bt - o(2n)
-        dp - o(n2)?
-        greedy - o(n)
-
-        issues: trying every possible jump
-        reaching False after doing almost n steps
-        repeated work
-
-        fixes: check if one position can reach the next or pass it
-        catch Falses early
-        no need to check every possible jump just check if the most jump can make it or pass it
+        
+        we went with the array reversed
 
         """
-        goalPost = len(nums) - 1
-
-        for i in range(len(nums) - 2, -1, -1):
-            if i + nums[i] >= goalPost:
-                #it can reach so update the goal for the next
-                goalPost = i
-        return True if goalPost == 0 else False
-
-        
-        
-                
-            
-            
-            
-            
-
-            
+        maxReach = 0 #maximum index the current index can reach 
+        #if it can reach or pass the last index
+        for i in range(len(nums) - 1):
+            if i > 0 and nums[i - 1] == 0 and nums[i] != 0 and maxReach < i:
+                return False
+            maxReach = max(maxReach, i + nums[i])
+            print(maxReach)
+        return True if maxReach >= len(nums) - 1 else False
         

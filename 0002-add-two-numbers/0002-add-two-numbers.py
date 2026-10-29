@@ -10,38 +10,27 @@ class Solution:
         carry = 0
         res = ListNode()
         curr3 = res
-        while curr1 and curr2:
-            ans = curr1.val + curr2.val + carry
+        def recurse(curr1, curr2, curr3, carry):
+            if not curr1 and not curr2:
+                if carry != 0:
+                    curr3.next = ListNode(carry)
+                return 
+            if curr1 and not curr2:
+                ans = curr1.val + carry
+                curr1 = curr1.next
+            elif curr2 and not curr1:
+                ans = curr2.val + carry
+                curr2 = curr2.next
+            else:
+                ans = curr1.val + curr2.val + carry
+                curr1 = curr1.next
+                curr2 = curr2.next
             if ans >= 10:
                 ans %= 10
                 carry = 1
-            else: 
-                carry = 0
-            curr1 = curr1.next
-            curr2 = curr2.next
-            curr3.next = ListNode(ans)
-            curr3 = curr3.next
-        while curr1:
-            ans = curr1.val + carry
-            if ans >= 10:
-                ans %= 10
-                carry = 1
-            else: 
+            else:
                 carry = 0
             curr3.next = ListNode(ans)
-            curr3 = curr3.next
-            curr1 = curr1.next
-        while curr2:
-            ans = curr2.val + carry
-            if ans >= 10:
-                ans %= 10
-                carry = 1
-            else: 
-                carry = 0
-            curr3.next = ListNode(ans)
-            curr3 = curr3.next
-            curr2 = curr2.next
-        if carry == 1:
-            curr3.next = ListNode(carry)
+            return recurse(curr1, curr2, curr3.next, carry)
+        recurse(curr1, curr2, curr3, 0)
         return res.next
-            

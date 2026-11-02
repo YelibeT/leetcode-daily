@@ -1,6 +1,5 @@
 class Solution:
     def minMoves(self, nums: list[int]) -> int:
-        nums.sort()
         subtracts = 0
         if len(nums) == 1:
             return subtracts

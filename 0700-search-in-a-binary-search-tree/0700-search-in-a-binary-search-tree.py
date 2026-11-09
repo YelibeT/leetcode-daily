@@ -15,10 +15,10 @@ class Solution(object):
             if not node:
                 return None
             if val < node.val:
-                node = self.searchBST(node.left, val)
-            elif val > root.val:
-                node = self.searchBST(node.right, val)
+                node = helper(node.left, val)
+            elif val > node.val:
+                node = helper(node.right, val)
             else:
-                return node
-            return node 
-        return helper(root,val)
+                return node 
+            return node
+        return helper(root, val)

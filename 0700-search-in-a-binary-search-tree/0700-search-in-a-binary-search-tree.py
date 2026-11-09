@@ -11,14 +11,11 @@ class Solution(object):
         :type val: int
         :rtype: Optional[TreeNode]
         """
-        def helper(node, val):
-            if not node:
-                return None
-            if val < node.val:
-                node = helper(node.left, val)
-            elif val > node.val:
-                node = helper(node.right, val)
-            else:
-                return node 
-            return node
-        return helper(root, val)
+        if not root:
+            return None
+        if val < root.val:
+            return self.searchBST(root.left, val)
+        elif val > root.val:
+            return self.searchBST(root.right, val)
+        else:
+            return root 

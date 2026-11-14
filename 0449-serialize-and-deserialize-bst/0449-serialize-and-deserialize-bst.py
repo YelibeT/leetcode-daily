@@ -7,23 +7,23 @@
 
 class Codec:
     def serialize(self, root):
-        res  = []
+        res = []
         def preorder(node):
             if node:
                 res.append(str(node.val))
                 preorder(node.left)
                 preorder(node.right)
         preorder(root)
-        res.reverse()
         return ' '.join(res)
     
     def deserialize(self, data):
         if not data:
             return None
-        vals = [int(val) for val in data.split(' ')]
+        vals = deque(int(val) for val in data.split(' '))
         def func(minm,maxm):
-            if vals and minm < vals[-1] < maxm:
-                node = TreeNode(vals.pop())
+            if vals and minm < vals[0] < maxm:
+                val = vals.popleft()
+                node = TreeNode(val)
                 node.left = func(minm,node.val)
                 node.right = func(node.val,maxm)
                 return node
